@@ -1,0 +1,541 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> behavior
+Rule 1     behavior -> match_op COMMA path_exp
+Rule 2     behavior -> LPAREN behavior RPAREN
+Rule 3     match_op -> EQUAL
+Rule 4     match_op -> EXIST COMPARISON NUMBER
+Rule 5     path_exp -> LPAREN _path_exp RPAREN
+Rule 6     path_exp -> _path_exp
+Rule 7     path_exp -> LPAREN _path_exp COMMA length_filter RPAREN
+Rule 8     length_filter -> LPAREN _length_filter RPAREN
+Rule 9     length_filter -> length_filter
+Rule 10    _length_filter -> COMPARISON NUMBER
+Rule 11    _length_filter -> COMPARISON LENGTH
+Rule 12    _length_filter -> COMPARISON LENGTH ADD NUMBER
+Rule 13    _path_exp -> _path_exp term
+Rule 14    _path_exp -> term
+Rule 15    term -> NODE
+Rule 16    term -> MNODE
+Rule 17    term -> STAR
+Rule 18    term -> DOT
+Rule 19    term -> COR
+Rule 20    term -> AND
+Rule 21    term -> NOT
+Rule 22    term -> OR
+
+Terminals, with rules where they appear
+
+ADD                  : 12
+AND                  : 20
+COMMA                : 1 7
+COMPARISON           : 4 10 11 12
+COR                  : 19
+DOT                  : 18
+EQUAL                : 3
+EXIST                : 4
+LENGTH               : 11 12
+LPAREN               : 2 5 7 8
+MNODE                : 16
+NODE                 : 15
+NOT                  : 21
+NUMBER               : 4 10 12
+OR                   : 22
+RPAREN               : 2 5 7 8
+STAR                 : 17
+error                : 
+
+Nonterminals, with rules where they appear
+
+_length_filter       : 8
+_path_exp            : 5 6 7 13
+behavior             : 2 0
+length_filter        : 7 9
+match_op             : 1
+path_exp             : 1
+term                 : 13 14
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . behavior
+    (1) behavior -> . match_op COMMA path_exp
+    (2) behavior -> . LPAREN behavior RPAREN
+    (3) match_op -> . EQUAL
+    (4) match_op -> . EXIST COMPARISON NUMBER
+
+    LPAREN          shift and go to state 3
+    EQUAL           shift and go to state 4
+    EXIST           shift and go to state 5
+
+    behavior                       shift and go to state 1
+    match_op                       shift and go to state 2
+
+state 1
+
+    (0) S' -> behavior .
+
+
+
+state 2
+
+    (1) behavior -> match_op . COMMA path_exp
+
+    COMMA           shift and go to state 6
+
+
+state 3
+
+    (2) behavior -> LPAREN . behavior RPAREN
+    (1) behavior -> . match_op COMMA path_exp
+    (2) behavior -> . LPAREN behavior RPAREN
+    (3) match_op -> . EQUAL
+    (4) match_op -> . EXIST COMPARISON NUMBER
+
+    LPAREN          shift and go to state 3
+    EQUAL           shift and go to state 4
+    EXIST           shift and go to state 5
+
+    behavior                       shift and go to state 7
+    match_op                       shift and go to state 2
+
+state 4
+
+    (3) match_op -> EQUAL .
+
+    COMMA           reduce using rule 3 (match_op -> EQUAL .)
+
+
+state 5
+
+    (4) match_op -> EXIST . COMPARISON NUMBER
+
+    COMPARISON      shift and go to state 8
+
+
+state 6
+
+    (1) behavior -> match_op COMMA . path_exp
+    (5) path_exp -> . LPAREN _path_exp RPAREN
+    (6) path_exp -> . _path_exp
+    (7) path_exp -> . LPAREN _path_exp COMMA length_filter RPAREN
+    (13) _path_exp -> . _path_exp term
+    (14) _path_exp -> . term
+    (15) term -> . NODE
+    (16) term -> . MNODE
+    (17) term -> . STAR
+    (18) term -> . DOT
+    (19) term -> . COR
+    (20) term -> . AND
+    (21) term -> . NOT
+    (22) term -> . OR
+
+    LPAREN          shift and go to state 10
+    NODE            shift and go to state 13
+    MNODE           shift and go to state 14
+    STAR            shift and go to state 15
+    DOT             shift and go to state 16
+    COR             shift and go to state 17
+    AND             shift and go to state 18
+    NOT             shift and go to state 19
+    OR              shift and go to state 20
+
+    path_exp                       shift and go to state 9
+    _path_exp                      shift and go to state 11
+    term                           shift and go to state 12
+
+state 7
+
+    (2) behavior -> LPAREN behavior . RPAREN
+
+    RPAREN          shift and go to state 21
+
+
+state 8
+
+    (4) match_op -> EXIST COMPARISON . NUMBER
+
+    NUMBER          shift and go to state 22
+
+
+state 9
+
+    (1) behavior -> match_op COMMA path_exp .
+
+    $end            reduce using rule 1 (behavior -> match_op COMMA path_exp .)
+    RPAREN          reduce using rule 1 (behavior -> match_op COMMA path_exp .)
+
+
+state 10
+
+    (5) path_exp -> LPAREN . _path_exp RPAREN
+    (7) path_exp -> LPAREN . _path_exp COMMA length_filter RPAREN
+    (13) _path_exp -> . _path_exp term
+    (14) _path_exp -> . term
+    (15) term -> . NODE
+    (16) term -> . MNODE
+    (17) term -> . STAR
+    (18) term -> . DOT
+    (19) term -> . COR
+    (20) term -> . AND
+    (21) term -> . NOT
+    (22) term -> . OR
+
+    NODE            shift and go to state 13
+    MNODE           shift and go to state 14
+    STAR            shift and go to state 15
+    DOT             shift and go to state 16
+    COR             shift and go to state 17
+    AND             shift and go to state 18
+    NOT             shift and go to state 19
+    OR              shift and go to state 20
+
+    _path_exp                      shift and go to state 23
+    term                           shift and go to state 12
+
+state 11
+
+    (6) path_exp -> _path_exp .
+    (13) _path_exp -> _path_exp . term
+    (15) term -> . NODE
+    (16) term -> . MNODE
+    (17) term -> . STAR
+    (18) term -> . DOT
+    (19) term -> . COR
+    (20) term -> . AND
+    (21) term -> . NOT
+    (22) term -> . OR
+
+    $end            reduce using rule 6 (path_exp -> _path_exp .)
+    RPAREN          reduce using rule 6 (path_exp -> _path_exp .)
+    NODE            shift and go to state 13
+    MNODE           shift and go to state 14
+    STAR            shift and go to state 15
+    DOT             shift and go to state 16
+    COR             shift and go to state 17
+    AND             shift and go to state 18
+    NOT             shift and go to state 19
+    OR              shift and go to state 20
+
+    term                           shift and go to state 24
+
+state 12
+
+    (14) _path_exp -> term .
+
+    NODE            reduce using rule 14 (_path_exp -> term .)
+    MNODE           reduce using rule 14 (_path_exp -> term .)
+    STAR            reduce using rule 14 (_path_exp -> term .)
+    DOT             reduce using rule 14 (_path_exp -> term .)
+    COR             reduce using rule 14 (_path_exp -> term .)
+    AND             reduce using rule 14 (_path_exp -> term .)
+    NOT             reduce using rule 14 (_path_exp -> term .)
+    OR              reduce using rule 14 (_path_exp -> term .)
+    $end            reduce using rule 14 (_path_exp -> term .)
+    RPAREN          reduce using rule 14 (_path_exp -> term .)
+    COMMA           reduce using rule 14 (_path_exp -> term .)
+
+
+state 13
+
+    (15) term -> NODE .
+
+    NODE            reduce using rule 15 (term -> NODE .)
+    MNODE           reduce using rule 15 (term -> NODE .)
+    STAR            reduce using rule 15 (term -> NODE .)
+    DOT             reduce using rule 15 (term -> NODE .)
+    COR             reduce using rule 15 (term -> NODE .)
+    AND             reduce using rule 15 (term -> NODE .)
+    NOT             reduce using rule 15 (term -> NODE .)
+    OR              reduce using rule 15 (term -> NODE .)
+    $end            reduce using rule 15 (term -> NODE .)
+    RPAREN          reduce using rule 15 (term -> NODE .)
+    COMMA           reduce using rule 15 (term -> NODE .)
+
+
+state 14
+
+    (16) term -> MNODE .
+
+    NODE            reduce using rule 16 (term -> MNODE .)
+    MNODE           reduce using rule 16 (term -> MNODE .)
+    STAR            reduce using rule 16 (term -> MNODE .)
+    DOT             reduce using rule 16 (term -> MNODE .)
+    COR             reduce using rule 16 (term -> MNODE .)
+    AND             reduce using rule 16 (term -> MNODE .)
+    NOT             reduce using rule 16 (term -> MNODE .)
+    OR              reduce using rule 16 (term -> MNODE .)
+    $end            reduce using rule 16 (term -> MNODE .)
+    RPAREN          reduce using rule 16 (term -> MNODE .)
+    COMMA           reduce using rule 16 (term -> MNODE .)
+
+
+state 15
+
+    (17) term -> STAR .
+
+    NODE            reduce using rule 17 (term -> STAR .)
+    MNODE           reduce using rule 17 (term -> STAR .)
+    STAR            reduce using rule 17 (term -> STAR .)
+    DOT             reduce using rule 17 (term -> STAR .)
+    COR             reduce using rule 17 (term -> STAR .)
+    AND             reduce using rule 17 (term -> STAR .)
+    NOT             reduce using rule 17 (term -> STAR .)
+    OR              reduce using rule 17 (term -> STAR .)
+    $end            reduce using rule 17 (term -> STAR .)
+    RPAREN          reduce using rule 17 (term -> STAR .)
+    COMMA           reduce using rule 17 (term -> STAR .)
+
+
+state 16
+
+    (18) term -> DOT .
+
+    NODE            reduce using rule 18 (term -> DOT .)
+    MNODE           reduce using rule 18 (term -> DOT .)
+    STAR            reduce using rule 18 (term -> DOT .)
+    DOT             reduce using rule 18 (term -> DOT .)
+    COR             reduce using rule 18 (term -> DOT .)
+    AND             reduce using rule 18 (term -> DOT .)
+    NOT             reduce using rule 18 (term -> DOT .)
+    OR              reduce using rule 18 (term -> DOT .)
+    $end            reduce using rule 18 (term -> DOT .)
+    RPAREN          reduce using rule 18 (term -> DOT .)
+    COMMA           reduce using rule 18 (term -> DOT .)
+
+
+state 17
+
+    (19) term -> COR .
+
+    NODE            reduce using rule 19 (term -> COR .)
+    MNODE           reduce using rule 19 (term -> COR .)
+    STAR            reduce using rule 19 (term -> COR .)
+    DOT             reduce using rule 19 (term -> COR .)
+    COR             reduce using rule 19 (term -> COR .)
+    AND             reduce using rule 19 (term -> COR .)
+    NOT             reduce using rule 19 (term -> COR .)
+    OR              reduce using rule 19 (term -> COR .)
+    $end            reduce using rule 19 (term -> COR .)
+    RPAREN          reduce using rule 19 (term -> COR .)
+    COMMA           reduce using rule 19 (term -> COR .)
+
+
+state 18
+
+    (20) term -> AND .
+
+    NODE            reduce using rule 20 (term -> AND .)
+    MNODE           reduce using rule 20 (term -> AND .)
+    STAR            reduce using rule 20 (term -> AND .)
+    DOT             reduce using rule 20 (term -> AND .)
+    COR             reduce using rule 20 (term -> AND .)
+    AND             reduce using rule 20 (term -> AND .)
+    NOT             reduce using rule 20 (term -> AND .)
+    OR              reduce using rule 20 (term -> AND .)
+    $end            reduce using rule 20 (term -> AND .)
+    RPAREN          reduce using rule 20 (term -> AND .)
+    COMMA           reduce using rule 20 (term -> AND .)
+
+
+state 19
+
+    (21) term -> NOT .
+
+    NODE            reduce using rule 21 (term -> NOT .)
+    MNODE           reduce using rule 21 (term -> NOT .)
+    STAR            reduce using rule 21 (term -> NOT .)
+    DOT             reduce using rule 21 (term -> NOT .)
+    COR             reduce using rule 21 (term -> NOT .)
+    AND             reduce using rule 21 (term -> NOT .)
+    NOT             reduce using rule 21 (term -> NOT .)
+    OR              reduce using rule 21 (term -> NOT .)
+    $end            reduce using rule 21 (term -> NOT .)
+    RPAREN          reduce using rule 21 (term -> NOT .)
+    COMMA           reduce using rule 21 (term -> NOT .)
+
+
+state 20
+
+    (22) term -> OR .
+
+    NODE            reduce using rule 22 (term -> OR .)
+    MNODE           reduce using rule 22 (term -> OR .)
+    STAR            reduce using rule 22 (term -> OR .)
+    DOT             reduce using rule 22 (term -> OR .)
+    COR             reduce using rule 22 (term -> OR .)
+    AND             reduce using rule 22 (term -> OR .)
+    NOT             reduce using rule 22 (term -> OR .)
+    OR              reduce using rule 22 (term -> OR .)
+    $end            reduce using rule 22 (term -> OR .)
+    RPAREN          reduce using rule 22 (term -> OR .)
+    COMMA           reduce using rule 22 (term -> OR .)
+
+
+state 21
+
+    (2) behavior -> LPAREN behavior RPAREN .
+
+    $end            reduce using rule 2 (behavior -> LPAREN behavior RPAREN .)
+    RPAREN          reduce using rule 2 (behavior -> LPAREN behavior RPAREN .)
+
+
+state 22
+
+    (4) match_op -> EXIST COMPARISON NUMBER .
+
+    COMMA           reduce using rule 4 (match_op -> EXIST COMPARISON NUMBER .)
+
+
+state 23
+
+    (5) path_exp -> LPAREN _path_exp . RPAREN
+    (7) path_exp -> LPAREN _path_exp . COMMA length_filter RPAREN
+    (13) _path_exp -> _path_exp . term
+    (15) term -> . NODE
+    (16) term -> . MNODE
+    (17) term -> . STAR
+    (18) term -> . DOT
+    (19) term -> . COR
+    (20) term -> . AND
+    (21) term -> . NOT
+    (22) term -> . OR
+
+    RPAREN          shift and go to state 25
+    COMMA           shift and go to state 26
+    NODE            shift and go to state 13
+    MNODE           shift and go to state 14
+    STAR            shift and go to state 15
+    DOT             shift and go to state 16
+    COR             shift and go to state 17
+    AND             shift and go to state 18
+    NOT             shift and go to state 19
+    OR              shift and go to state 20
+
+    term                           shift and go to state 24
+
+state 24
+
+    (13) _path_exp -> _path_exp term .
+
+    NODE            reduce using rule 13 (_path_exp -> _path_exp term .)
+    MNODE           reduce using rule 13 (_path_exp -> _path_exp term .)
+    STAR            reduce using rule 13 (_path_exp -> _path_exp term .)
+    DOT             reduce using rule 13 (_path_exp -> _path_exp term .)
+    COR             reduce using rule 13 (_path_exp -> _path_exp term .)
+    AND             reduce using rule 13 (_path_exp -> _path_exp term .)
+    NOT             reduce using rule 13 (_path_exp -> _path_exp term .)
+    OR              reduce using rule 13 (_path_exp -> _path_exp term .)
+    $end            reduce using rule 13 (_path_exp -> _path_exp term .)
+    RPAREN          reduce using rule 13 (_path_exp -> _path_exp term .)
+    COMMA           reduce using rule 13 (_path_exp -> _path_exp term .)
+
+
+state 25
+
+    (5) path_exp -> LPAREN _path_exp RPAREN .
+
+    $end            reduce using rule 5 (path_exp -> LPAREN _path_exp RPAREN .)
+    RPAREN          reduce using rule 5 (path_exp -> LPAREN _path_exp RPAREN .)
+
+
+state 26
+
+    (7) path_exp -> LPAREN _path_exp COMMA . length_filter RPAREN
+    (8) length_filter -> . LPAREN _length_filter RPAREN
+    (9) length_filter -> . length_filter
+
+    LPAREN          shift and go to state 27
+
+    length_filter                  shift and go to state 28
+
+state 27
+
+    (8) length_filter -> LPAREN . _length_filter RPAREN
+    (10) _length_filter -> . COMPARISON NUMBER
+    (11) _length_filter -> . COMPARISON LENGTH
+    (12) _length_filter -> . COMPARISON LENGTH ADD NUMBER
+
+    COMPARISON      shift and go to state 30
+
+    _length_filter                 shift and go to state 29
+
+state 28
+
+    (7) path_exp -> LPAREN _path_exp COMMA length_filter . RPAREN
+    (9) length_filter -> length_filter .
+
+  ! shift/reduce conflict for RPAREN resolved as shift
+    RPAREN          shift and go to state 31
+
+  ! RPAREN          [ reduce using rule 9 (length_filter -> length_filter .) ]
+
+
+state 29
+
+    (8) length_filter -> LPAREN _length_filter . RPAREN
+
+    RPAREN          shift and go to state 32
+
+
+state 30
+
+    (10) _length_filter -> COMPARISON . NUMBER
+    (11) _length_filter -> COMPARISON . LENGTH
+    (12) _length_filter -> COMPARISON . LENGTH ADD NUMBER
+
+    NUMBER          shift and go to state 33
+    LENGTH          shift and go to state 34
+
+
+state 31
+
+    (7) path_exp -> LPAREN _path_exp COMMA length_filter RPAREN .
+
+    $end            reduce using rule 7 (path_exp -> LPAREN _path_exp COMMA length_filter RPAREN .)
+    RPAREN          reduce using rule 7 (path_exp -> LPAREN _path_exp COMMA length_filter RPAREN .)
+
+
+state 32
+
+    (8) length_filter -> LPAREN _length_filter RPAREN .
+
+    RPAREN          reduce using rule 8 (length_filter -> LPAREN _length_filter RPAREN .)
+
+
+state 33
+
+    (10) _length_filter -> COMPARISON NUMBER .
+
+    RPAREN          reduce using rule 10 (_length_filter -> COMPARISON NUMBER .)
+
+
+state 34
+
+    (11) _length_filter -> COMPARISON LENGTH .
+    (12) _length_filter -> COMPARISON LENGTH . ADD NUMBER
+
+    RPAREN          reduce using rule 11 (_length_filter -> COMPARISON LENGTH .)
+    ADD             shift and go to state 35
+
+
+state 35
+
+    (12) _length_filter -> COMPARISON LENGTH ADD . NUMBER
+
+    NUMBER          shift and go to state 36
+
+
+state 36
+
+    (12) _length_filter -> COMPARISON LENGTH ADD NUMBER .
+
+    RPAREN          reduce using rule 12 (_length_filter -> COMPARISON LENGTH ADD NUMBER .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for RPAREN in state 28 resolved as shift

@@ -1,0 +1,5 @@
+ply>=3.11
+networkx>=2.8.7
+numpy>=1.23.2
+bitarray>=2.8.0
+automata-lib==7.1.0

@@ -158,7 +158,7 @@ class Planner:
             if filter.startswith(">="):
                 func = lambda a: a >= number
             elif filter.startswith("=="):
-                func = lambda a: a == number
+                func = lambda a: a <= number
             elif filter.startswith("<="):
                 func = lambda a: a <= number
             elif filter.startswith("<"):

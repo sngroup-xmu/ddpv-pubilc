@@ -1,7 +1,6 @@
 import ply.yacc as yacc
 from Planner.lexer import tokens
-from automata.fa.dfa import DFA
-from automata.fa.nfa import NFA
+
 
 def p_behavior(p):
     r"""behavior : match_op COMMA path_exp
@@ -84,13 +83,4 @@ def p_error(p):
 
 
 parser = yacc.yacc(start='behavior')
-
-# a = parser.parse("(equal, (S.*D , (<= shortest+2)))")
-# print(a)
-#
-# nfa = NFA.from_regex(a['path']['path_exp'], input_symbols={"S", "A", "D", "啊", "吧"})
-# print(nfa.validate())
-# print(nfa.transitions)
-# dfa = DFA.from_nfa(nfa)
-# dfa.show_diagram("./a.jpg")
 
