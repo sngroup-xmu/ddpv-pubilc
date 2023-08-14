@@ -1,5 +1,7 @@
 # Tulkun
 
+[EN](README.md)| [中文](README_CN.md)
+
 ## Planner
 Tulkun planner use an invariant and network topology to generate DPVNet.
 
