@@ -1,3 +1,4 @@
+import math
 import networkx
 
 from Planner.dvnet import DVNet
@@ -24,6 +25,7 @@ _parser_init()
 
 class Planner:
     allow_char_regex = re.compile("^[a-zA-Z0-9]$")
+    INF = math.inf
 
     def __init__(self):
         self.ports = {}  # type:dict[str, dict[str, set[Port]]]
@@ -153,6 +155,8 @@ class Planner:
             if len(self.ingresses) != 1:
                 print("the number of ingress must be 1.")
             shortest = self.get_min_table()[self.node_to_id[self.ingresses[0]]][self.node_to_id[self.destination]]
+            if shortest == self.INF:
+                return self.INF, func
             filter = filter.replace("shortest", str(int(shortest)), 1)
             number = eval(filter.lstrip("<>="))
             if filter.startswith(">="):
@@ -183,6 +187,8 @@ class Planner:
 
         if "length_filter" in behavior["path"]:
             shortest, length_filter = self.parse_filter(behavior["path"]["length_filter"])
+            if shortest == self.INF:
+                return []
 
         path_exp = "".join([self.rename_dict[i] if i in self.rename_dict else i for i in behavior["path"]["path_exp"]])
         new_ingress = [self.rename_dict[ingress] for ingress in ingresses]
