@@ -3,7 +3,7 @@
 [EN](README.md)| [中文](README_CN.md)
 
 ## Planner
-Tulkun planner use an invariant and network topology to generate DPVNet.
+Tulkun planner uses an invariant and network topology to generate DPVNet.
 
 DPVNet is a DAG representing all paths in the network that matches path_exp.
 DPVNet can be constructed in different ways.
@@ -45,7 +45,7 @@ After running, planner generates the corresponding puml file in the `\config\dem
 
 ### Evaluation Dateset
 
-Running the `planner_test.py` file in the `.\scripts\` directory with parameters for the network name,  it automatically generates a DPVNet for all the pairs reachability required for Evaluation.
+Running the `planner_test.py` file in the `.\scripts\` directory with parameters for the network name,  it automatically generates a DPVNet for all the pairs reachability required for evaluation.
 
 e.g.
 ```shell
@@ -61,13 +61,13 @@ The network name parameter that can be used is any directory name under the dire
 
 Tulkun was used in a distributed network environment. This project provides a simulation to run distributed verification on a single machine and get the verification time.
 
-it required:
+it required and recommended:
 
 - JDK 8
 - Configure the necessary environment through the `pom.xml` file.
 - Run the main class, located at:`src/main/java/Main.java`
-- It is recommended to run the program in terminal, you can use the parameter '-h' to see all the available parameters.
-- Whichever method you run with, make sure that you have a `config` directory in the runtime directory and that you have generated the DPVNet from *Evaluation datasets* .
+- Run the program in terminal, you can use the parameter `-h` to see all the available parameters.
+- Whichever method you run with, make sure that you have a `config` directory in the runtime directory and that you have generated the DPVNet from *Evaluation Datasets* .
 
 ### Burst Update
 
