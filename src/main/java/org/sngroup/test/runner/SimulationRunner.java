@@ -12,7 +12,8 @@
  *
  * Authors: Chenyang Huang (Xiamen University) <xmuhcy@stu.xmu.edu.cn>
  *          Qiao Xiang     (Xiamen University) <xiangq27@gmail.com>
- *
+ *          Ridi Wen       (Xiamen University) <23020211153973@stu.xmu.edu.cn>
+ *          Yuxin Wang     (Xiamen University) <yuxxinwang@gmail.com>
  */
 
 package org.sngroup.test.runner;
